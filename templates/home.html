@@ -1,12 +1,100 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row mb-3">
     <div class="col">
-        <h1>{{ title }}</h1>
-        <p>
-            Тут будет расчёт страховки
-        </p>
+        <h2 class="mb-4">Подбор выгодной стоматологической страховки</h2>
+        <form method="post" enctype="multipart/form-data">
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <label for="age" class="col-form-label">Возраст</label>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <input type="number" id="age" name="age" class="form-control"
+                           aria-describedby="Возраст" value="18">
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <span id="ageHelpInline" class="form-text">
+                        Введите количество полных лет страхуемого лица
+                    </span>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <label for="teeth" class="col-form-label">Kоличество отсутствующих зубов</label>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <input type="number" id="teeth" name="teeth" class="form-control"
+                           aria-describedby="Kоличество отсутствующих зубов" value="0">
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                    <span id="teethHelpInline" class="form-text">
+                        "Восьмёрки" не считаются
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics">
+                <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="orto" name="orto">
+                <label class="form-check-label" for="orto">Планируется ли ортодонтия?</label>
+            </div>
+
+        </form>
     </div>
 </div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    <div class="col">
+        <div class="card">
+            <img src="https://www.allianz.com/content/dam/onemarketing/system/AZ_Logo_Twitter_438x220px.png"
+                 class="card-img-top" alt="allianz">
+            <div class="card-body">
+                <h5 class="card-title">Allianz</h5>
+                <p class="card-text">Збсь клёвая страховка Allianz</p>
+                <a href="#" class="btn btn-outline-success">Оформить</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="https://media.barmenia.de/media/global_media/images/logos/barmenia_schmal_400x118.png"
+                 class="card-img-top" alt="barmenia">
+            <div class="card-body">
+                <h5 class="card-title">Barmenia</h5>
+                <p class="card-text">Збсь клёвая страховка Barmenia</p>
+                <a href="#" class="btn btn-outline-success">Оформить</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="https://www.allianz.com/content/dam/onemarketing/system/AZ_Logo_Twitter_438x220px.png"
+                 class="card-img-top" alt="allianz">
+            <div class="card-body">
+                <h5 class="card-title">Allianz</h5>
+                <p class="card-text">Збсь клёвая страховка</p>
+                <a href="#" class="btn btn-outline-success">Оформить</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <img src="https://www.allianz.com/content/dam/onemarketing/system/AZ_Logo_Twitter_438x220px.png"
+                 class="card-img-top" alt="allianz">
+            <div class="card-body">
+                <h5 class="card-title">Allianz</h5>
+                <p class="card-text">Збсь клёвая страховка</p>
+                <a href="#" class="btn btn-outline-success">Оформить</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
