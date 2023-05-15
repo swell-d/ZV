@@ -1,4 +1,4 @@
-sudo nano /etc/systemd/system/flask.service
+sudo nano /etc/systemd/system/zv.service
 
 [Unit]
 Description=Gunicorn instance to serve Flask
@@ -8,7 +8,7 @@ User=root
 Group=www-data
 WorkingDirectory=/var/www/zv
 Environment="PATH=/var/www/zv/venv/bin"
-ExecStart=/var/www/zv/venv/bin/gunicorn --timeout 600 --bind 0.0.0.0:5005 server:create_app()
+ExecStart=/var/www/zv/venv/bin/gunicorn --bind 0.0.0.0:5005 server:create_app()
 [Install]
 WantedBy=multi-user.target
 

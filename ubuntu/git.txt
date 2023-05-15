@@ -1,0 +1,4 @@
+cd /var/www/
+sudo mkdir zv
+sudo python3 -m venv venv
+sudo git clone https://swell-d@github.com/swell-d/ZV .
