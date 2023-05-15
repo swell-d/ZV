@@ -16,6 +16,25 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+
+                {% if current_user.id == 1 %}
+                <li><a class="nav-link active" href="{{ url_for('admin_projects') }}">
+                    {{ _("All projects") }}
+                </a></li>
+                <li><a class="nav-link active" href="{{ url_for('admin_users') }}">
+                    {{ _("Users") }}
+                </a></li>
+                {% endif %}
+
+                {% if not current_user.is_authenticated %}
+                <li><a class="nav-link active" href="{{ url_for('login') }}">
+                    {{ _("Login") }}
+                </a></li>
+                <li><a class="nav-link active" href="{{ url_for('signup') }}">
+                    {{ _("Sign Up") }}
+                </a></li>
+                {% endif %}
+
                 {% if current_user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" href="#" id="userDropdown" role="button"
