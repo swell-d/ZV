@@ -1,0 +1,6 @@
+wheel
+flask
+flask-login
+flask-sqlalchemy
+flask-babel
+gunicorn
