@@ -9,6 +9,7 @@ function resultReload() {
     Http.open("GET", location.href.split('?')[0] + 'calculate?' + urlSearchParams.toString());
     Http.send();
     Http.onreadystatechange = (e) => {
-        document.getElementById("results").innerHTML = Http.responseText
+        document.getElementById("results").innerHTML = Http.responseText;
     }
+    window.history.pushState('', '', location.href.split('?')[0] + '?' + urlSearchParams.toString());
 }
