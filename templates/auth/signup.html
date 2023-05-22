@@ -10,7 +10,8 @@
     <div class="col">
         <h1>{{ title }}</h1>
 
-        <form method="POST">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <div class="col-12 col-xl-6 mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required/>
@@ -68,6 +69,30 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <h3>Terms and conditions</h3>
+                <ul>
+                    <li>We use only one cookie to store your session data. This applies to users who are logged in.</li>
+                    <li>All data is stored on our servers located in Germany. We do not share the data with any other
+                        companies.
+                    </li>
+                    <li>We did our best to protect your data from leaks, but unfortunately we cannot guarantee that it
+                        will not
+                        be stolen by third parties.
+                    </li>
+                    <li>For any questions - <a href="mailto:360@dmitry-rudenko.de"
+                                               target="_blank">360@dmitry-rudenko.de</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-12 form-check">
+                <input class="form-check-input" type="checkbox" id="cookies" name="cookies" required>
+                <label class="form-check-label" for="cookies">
+                    I agree with the terms and conditions of use.
+                </label>
             </div>
 
             <div class="col-12 col-xl-6 mt-4 mb-3">

@@ -3,15 +3,17 @@ import os
 from flask import Flask
 from flask_babel import Babel
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
 
 import models
 from routes import error, admin, auth, main_routes
 
+csrf = CSRFProtect()
+
 
 def create_app():
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.abspath('virtual-tour-386412-e86ff0f5a569.json')
-
     app = Flask(__name__)
+    csrf.init_app(app)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'my-secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 

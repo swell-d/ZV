@@ -14,7 +14,7 @@ def admin_routes(app):
         data = {'title': f"Users", 'users': models.User.query.all()}
         return render_template('admin/users.html', **data)
 
-    @app.route('/admin/users/delete/<int:user_id>', methods=['POST'])
+    @app.route('/admin/users/<int:user_id>/delete', methods=['POST'])
     @login_required
     def admin_delete_user(user_id):
         if not current_user.admin: return routes.error.code404()

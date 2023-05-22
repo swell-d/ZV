@@ -1,3 +1,5 @@
+import time
+
 from flask import render_template, request, redirect, flash, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -29,6 +31,7 @@ def auth_routes(app):
             return redirect(url_for('login'))
         if not check_password_hash(user.password, password):
             flash('Wrong password. Please check your login details and try again.')
+            time.sleep(5)
             return redirect(url_for('login'))
 
         login_user(user, remember=remember)
@@ -44,6 +47,11 @@ def auth_routes(app):
         email = request.form.get('email')
         name = request.form.get('name')
         password = request.form.get('password')
+        cookies = request.form.get('cookies')
+
+        if not (email and name and password and cookies):
+            flash('Error! Not all required fields are filled.')
+            return redirect(url_for('signup'))
 
         if models.User.query.filter_by(email=email).first():
             flash('Email address already exists. Please, login')

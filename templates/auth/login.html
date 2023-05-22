@@ -5,7 +5,8 @@
     <div class="col">
         <h1>{{ title }}</h1>
 
-        <form method="POST">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <div class="col-12 col-xl-6 mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
@@ -22,8 +23,15 @@
                 <label class="form-check-label" for="remember">Remember me</label>
             </div>
 
-            <button type="submit" class="btn btn-outline-secondary">Login</button>
+            <div class="col-12 mb-3">
+                <button type="submit" class="btn btn-outline-secondary">Login</button>
+            </div>
         </form>
+
+        <div class="col-12 mb-3">
+            <p>No account? Just <a href="{{ url_for('signup') }}">register</a> a new one. </p>
+        </div>
     </div>
 </div>
+
 {% endblock %}
