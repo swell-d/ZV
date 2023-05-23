@@ -1,44 +1,13 @@
-<div class="col">
-    <div class="card">
-        <img src="/static/logo.png"
-             class="card-img-top" alt="allianz">
-        <div class="card-body">
-            <h5 class="card-title">Allianz</h5>
-            <p class="card-text">Збсь клёвая страховка Allianz</p>
-            <a href="#" class="btn btn-outline-success">Оформить</a>
+{% for data in cards %}
+    <div class="col">
+        <div class="card shadow">
+            <img src="/static/brands/{{ data['logo'] }} " height="150px"
+                 class="card-img-top p-4" alt="{{ data['brand'] }}">
+            <div class="card-body">
+                <p class="card-text mb-0">{{ data['description'] }}</p>
+                <p class="card-text mb-3">{{ data['price'] }}</p>
+                <a href="#" class="btn btn-outline-success">Оформить</a>
+            </div>
         </div>
     </div>
-</div>
-<div class="col">
-    <div class="card">
-        <img src="/static/logo.png"
-             class="card-img-top" alt="barmenia">
-        <div class="card-body">
-            <h5 class="card-title">Barmenia</h5>
-            <p class="card-text">Збсь клёвая страховка Barmenia</p>
-            <a href="#" class="btn btn-outline-success">Оформить</a>
-        </div>
-    </div>
-</div>
-<div class="col">
-    <div class="card">
-        <img src="/static/logo.png"
-             class="card-img-top" alt="allianz">
-        <div class="card-body">
-            <h5 class="card-title">Allianz</h5>
-            <p class="card-text">Збсь клёвая страховка</p>
-            <a href="#" class="btn btn-outline-success">Оформить</a>
-        </div>
-    </div>
-</div>
-<div class="col">
-    <div class="card">
-        <img src="/static/logo.png"
-             class="card-img-top" alt="allianz">
-        <div class="card-body">
-            <h5 class="card-title">Allianz</h5>
-            <p class="card-text">Збсь клёвая страховка</p>
-            <a href="#" class="btn btn-outline-success">Оформить</a>
-        </div>
-    </div>
-</div>
+{% endfor %}

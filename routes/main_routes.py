@@ -4,6 +4,43 @@ from flask import render_template, send_file, request
 
 import routes.error
 
+allianz = {
+    'brand': 'Allianz',
+    'logo': 'allianz.svg',
+    'description': 'Allianz description',
+    'price': '123€ в месяц'
+}
+barmenia = {
+    'brand': 'Barmenia',
+    'logo': 'barmenia.svg',
+    'description': 'Barmenia description',
+    'price': '234€ в месяц'
+}
+diebayerische = {
+    'brand': 'die Bayerische',
+    'logo': 'diebayerische.svg',
+    'description': 'die Bayerische description',
+    'price': '345€ в месяц'
+}
+muenchenerverein = {
+    'brand': 'Münchener Verein',
+    'logo': 'muenchener-verein.svg',
+    'description': 'Münchener Verein description',
+    'price': '456€ в месяц'
+}
+signaliduna = {
+    'brand': 'SIGNAL IDUNA',
+    'logo': 'signal-iduna.svg',
+    'description': 'SIGNAL IDUNA description',
+    'price': '567€ в месяц'
+}
+nuernberger = {
+    'brand': 'NÜRNBERGER',
+    'logo': 'nuernberger.svg',
+    'description': 'NÜRNBERGER description',
+    'price': '678€ в месяц'
+}
+
 
 def main_routes(app):
     @app.route('/static/<path:url>', methods=['GET'])
@@ -27,6 +64,7 @@ def main_routes(app):
         teeth = request.args.get('teeth') if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
         orto = request.args.get('orto', '')
-        data = {'age': age, 'teeth': teeth, 'prosthodontics': prosthodontics, 'orto': orto}
+
+        data = {'cards': [allianz, barmenia, diebayerische, muenchenerverein, signaliduna, nuernberger]}
 
         return render_template('results.html', **data)
