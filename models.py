@@ -21,6 +21,7 @@ class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created = db.Column(db.DateTime, server_default=func.now())
     name = db.Column(db.String(100), nullable=False, unique=True)
+    short_name = db.Column(db.String(100), nullable=False, unique=True)
     mode = db.Column(db.Integer, default=1)  # 0-disable  1-enable
     logo = db.Column(db.String(100))
     short_description = db.Column(db.String(1000))
