@@ -2,6 +2,7 @@ import os
 
 from flask import render_template, send_file, request
 
+import dbf
 import routes.error
 
 allianz = {
@@ -66,22 +67,51 @@ def main_routes(app):
         orto = request.args.get('orto', '')
 
         data = {'cards': []}
+
         if age >= 18 and teeth == 0 and orto == '':
-            data = {'cards': [allianz, barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]}
+            for tariff in dbf.get_tariffs('allianz', age):
+                data['cards'].append({
+                    'brand': tariff.company.name,
+                    'logo': tariff.company.logo,
+                    'description': tariff.name,
+                    'price': tariff.price
+                })
+            data['cards'] += [barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]
+
         elif age >= 18 and teeth == 1 and orto == '':
-            allianz25 = allianz.copy()
-            allianz25['price'] *= 1.25
-            data = {'cards': [barmenia, diebayerische, allianz25, muenchenerverein, nuernberger, signaliduna]}
+            data['cards'] += [barmenia, diebayerische]
+            for tariff in dbf.get_tariffs('allianz', age):
+                data['cards'].append({
+                    'brand': tariff.company.name,
+                    'logo': tariff.company.logo,
+                    'description': tariff.name,
+                    'price': round(tariff.price * 1.25, 2)
+                })
+            data['cards'] += [muenchenerverein, nuernberger, signaliduna]
+
         elif age >= 18 and teeth == 2 and orto == '':
-            allianz50 = allianz.copy()
-            allianz50['price'] *= 1.5
-            data = {'cards': [barmenia, allianz50, signaliduna, diebayerische, muenchenerverein, nuernberger]}
+            data['cards'] += [barmenia]
+            for tariff in dbf.get_tariffs('allianz', age):
+                data['cards'].append({
+                    'brand': tariff.company.name,
+                    'logo': tariff.company.logo,
+                    'description': tariff.name,
+                    'price': round(tariff.price * 1.5, 2)
+                })
+            data['cards'] += [signaliduna, diebayerische, muenchenerverein, nuernberger]
+
         elif age >= 18 and teeth == 3 and orto == '':
-            allianz75 = allianz.copy()
-            allianz75['price'] *= 1.75
-            data = {'cards': [allianz75, barmenia, signaliduna, diebayerische, muenchenerverein, nuernberger]}
+            for tariff in dbf.get_tariffs('allianz', age):
+                data['cards'].append({
+                    'brand': tariff.company.name,
+                    'logo': tariff.company.logo,
+                    'description': tariff.name,
+                    'price': round(tariff.price * 1.75, 2)
+                })
+            data['cards'] += [barmenia, signaliduna, diebayerische, muenchenerverein, nuernberger]
+
         elif age >= 18 and teeth >= 4 and orto == '':
-            data = {'cards': [nuernberger]}
+            data['cards'] += [nuernberger]
 
         elif age >= 18 and orto != '':
             data = {'cards': [diebayerische, muenchenerverein]}

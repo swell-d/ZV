@@ -8,22 +8,14 @@ def commit():
     db.session.commit()
 
 
-def get_user_by_id(user_id):
-    return models.User.query.filter_by(id=user_id).first()
-
-
-def get_user_by_email(email):
-    return models.User.query.filter_by(email=email).first()
-
-
-def delete_user(user_id):
-    models.User.query.filter_by(id=user_id).delete()
-    db.session.commit()
-
-
 def get_all_companies():
     return models.Company.query.all()
 
 
 def get_companies(names):
     return [models.Company.query.filter_by(name=name).first() for name in names]
+
+
+def get_tariffs(company_short_name, age):
+    company = models.Company.query.filter_by(short_name=company_short_name).first()
+    return [tariff for tariff in company.tariffs if tariff.min_age <= age and tariff.max_age >= age]

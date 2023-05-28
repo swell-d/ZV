@@ -1,9 +1,7 @@
-from flask import Flask
-
 import models
 
 
-def create_companies(db):
+def start(db):
     c1 = models.Company(
         name='Allianz',
         short_name='allianz',
@@ -47,16 +45,3 @@ def create_companies(db):
     )
     db.session.add(c6)
     db.session.commit()
-
-
-if __name__ == '__main__':
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../db.sqlite'
-
-    from database import get_db
-
-    db = get_db()
-    db.init_app(app)
-
-    with app.app_context():
-        create_companies(db)

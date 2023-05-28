@@ -1,7 +1,5 @@
 wheel
 flask
-flask-login
 flask-sqlalchemy
-flask-babel
 Flask-WTF
 gunicorn
