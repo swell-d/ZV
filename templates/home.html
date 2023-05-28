@@ -6,7 +6,7 @@
         <h2 class="mb-4">Подбор выгодной стоматологической страховки</h2>
         <form method="post" enctype="multipart/form-data">
 
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3" id="age_block">
                 <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <label for="age" class="col-form-label">Возраст</label>
                 </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3" id="teeth_block">
                 <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <label for="teeth" class="col-form-label">Kоличество отсутствующих зубов</label>
                 </div>
@@ -36,13 +36,13 @@
                 </div>
             </div>
 
-            <div class="form-check form-switch mb-3">
+            <div class="form-check form-switch mb-3" id="prosthodontics_block">
                 <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics"
                        oninput="resultReload()" {% if prosthodontics %}checked{% endif %}>
                 <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
             </div>
 
-            <div class="form-check form-switch mb-3">
+            <div class="form-check form-switch mb-3" id="orto_block">
                 <input class="form-check-input" type="checkbox" role="switch" id="orto" name="orto"
                        oninput="resultReload()" {% if orto %}checked{% endif %}>
                 <label class="form-check-label" for="orto">Планируется ли ортодонтия?</label>
@@ -57,5 +57,5 @@
 
 {% block script_additional %}
 <script src="/static/js/calculate.js"></script>
-<script>resultLoad();</script>
+<script>resultReload();</script>
 {% endblock %}
