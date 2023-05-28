@@ -23,6 +23,7 @@ class Tariff(db.Model):
     mode = db.Column(db.Integer, default=1)  # 0-disable  1-enable
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
     company = db.relationship("Company", backref="tariffs")
+    prosthodontics = db.Column(db.Integer, nullable=False)
     unlimited = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(1000))
 

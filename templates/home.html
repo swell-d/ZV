@@ -42,10 +42,22 @@
                 <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
             </div>
 
+            <div class="form-check form-switch mb-3" id="prosthodontics_full_block">
+                <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics_full" name="prosthodontics_full"
+                       oninput="resultReload()" {% if prosthodontics_full %}checked{% endif %}>
+                <label class="form-check-label" for="prosthodontics_full">100% возмещение стоимости протезирования</label>
+            </div>
+
             <div class="form-check form-switch mb-3" id="orto_block">
                 <input class="form-check-input" type="checkbox" role="switch" id="orto" name="orto"
                        oninput="resultReload()" {% if orto %}checked{% endif %}>
                 <label class="form-check-label" for="orto">Планируется ли ортодонтия?</label>
+            </div>
+
+            <div class="form-check form-switch mb-3" id="unlimited_block">
+                <input class="form-check-input" type="checkbox" role="switch" id="unlimited" name="unlimited"
+                       oninput="resultReload()" {% if unlimited %}checked{% endif %}>
+                <label class="form-check-label" for="unlimited">Стоимость страховки зафиксирована и не будет расти</label>
             </div>
 
         </form>

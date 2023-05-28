@@ -15,12 +15,21 @@ def main_routes(app):
 
     @app.route('/', methods=['GET'])
     def home():
-        age = request.args.get('age') if request.args.get('age') else 18
-        teeth = request.args.get('teeth') if request.args.get('teeth') else 0
+        age = int(request.args.get('age')) if request.args.get('age') else 18
+        teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
+        prosthodontics_full = request.args.get('prosthodontics_full', '')
         orto = request.args.get('orto', '')
+        unlimited = request.args.get('unlimited', '')
 
-        data = {'title': 'Заголовок', 'age': age, 'teeth': teeth, 'prosthodontics': prosthodontics, 'orto': orto}
+        data = {'title': 'Заголовок', 
+                'age': age, 
+                'teeth': teeth, 
+                'prosthodontics': prosthodontics, 
+                'prosthodontics_full': prosthodontics_full,
+                'orto': orto,
+                'unlimited': unlimited
+                }
 
         return render_template('home.html', **data)
 
@@ -29,16 +38,18 @@ def main_routes(app):
         age = int(request.args.get('age')) if request.args.get('age') else 18
         teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
+        prosthodontics_full = request.args.get('prosthodontics_full', '')
         orto = request.args.get('orto', '')
+        unlimited = request.args.get('unlimited', '')
 
         data = {'cards1': [], 'cards2': [], 'cards3': []}
 
-        allianz = get_allianz(age, teeth, prosthodontics, orto)
-        barmenia = get_barmenia(age, teeth, prosthodontics, orto)
-        diebayerische = get_diebayerische(age, teeth, prosthodontics, orto)
-        muenchenerverein = get_muenchenerverein(age, teeth, prosthodontics, orto)
-        nuernberger = get_nuernberger(age, teeth, prosthodontics, orto)
-        signaliduna = get_signaliduna(age, teeth, prosthodontics, orto)
+        allianz = get_allianz(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
+        barmenia = get_barmenia(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
+        diebayerische = get_diebayerische(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
+        muenchenerverein = get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
+        nuernberger = get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
+        signaliduna = get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
 
         if age >= 18 and teeth == 0 and not orto:
             data['cards1'] += [*allianz, *barmenia]
@@ -73,7 +84,7 @@ def main_routes(app):
         return render_template('results.html', **data)
 
 
-def get_allianz(age, teeth, prosthodontics, orto):
+def get_allianz(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     result = []
 
     if teeth == 0:
@@ -87,7 +98,7 @@ def get_allianz(age, teeth, prosthodontics, orto):
     else:
         price_increase = 1.75
 
-    for condition in dbf.get_conditions('allianz', age):
+    for condition in dbf.get_conditions('allianz', age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
         result.append({
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
@@ -97,7 +108,7 @@ def get_allianz(age, teeth, prosthodontics, orto):
     return result
 
 
-def get_barmenia(age, teeth, prosthodontics, orto):
+def get_barmenia(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     return [{
         'brand': 'Barmenia',
         'logo': 'barmenia.svg',
@@ -106,7 +117,7 @@ def get_barmenia(age, teeth, prosthodontics, orto):
     }]
 
 
-def get_diebayerische(age, teeth, prosthodontics, orto):
+def get_diebayerische(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     return [{
         'brand': 'die Bayerische',
         'logo': 'diebayerische.svg',
@@ -115,7 +126,7 @@ def get_diebayerische(age, teeth, prosthodontics, orto):
     }]
 
 
-def get_muenchenerverein(age, teeth, prosthodontics, orto):
+def get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     return [{
         'brand': 'Münchener Verein',
         'logo': 'muenchener-verein.svg',
@@ -124,7 +135,7 @@ def get_muenchenerverein(age, teeth, prosthodontics, orto):
     }]
 
 
-def get_nuernberger(age, teeth, prosthodontics, orto):
+def get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     return [{
         'brand': 'NÜRNBERGER',
         'logo': 'nuernberger.svg',
@@ -133,7 +144,7 @@ def get_nuernberger(age, teeth, prosthodontics, orto):
     }]
 
 
-def get_signaliduna(age, teeth, prosthodontics, orto):
+def get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
     return [{
         'brand': 'SIGNAL IDUNA',
         'logo': 'signal-iduna.svg',

@@ -185,6 +185,7 @@ def create(db):
         name='MeinZahnschutz 75 (ZS75AR)',
         company=allianz,
         unlimited=1,
+        prosthodontics=75,
         description=''
     )
     db.session.add(tarif1)
@@ -193,6 +194,7 @@ def create(db):
         name='MeinZahnschutz 90 (ZS90AR)',
         company=allianz,
         unlimited=1,
+        prosthodontics=90,
         description=''
     )
     db.session.add(tarif2)
@@ -201,6 +203,7 @@ def create(db):
         name='MeinZahnschutz 100 (ZS100AR)',
         company=allianz,
         unlimited=1,
+        prosthodontics=100,
         description=''
     )
     db.session.add(tarif3)
