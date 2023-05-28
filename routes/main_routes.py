@@ -66,17 +66,17 @@ def main_routes(app):
         prosthodontics = request.args.get('prosthodontics', '')
         orto = request.args.get('orto', '')
 
-        data = {'cards': []}
+        data = {'cards1': [], 'cards2': [], 'cards3': []}
 
         if age >= 18 and teeth == 0 and orto == '':
             for condition in dbf.get_conditions('allianz', age):
-                data['cards'].append({
+                data['cards1'].append({
                     'brand': condition.tariff.company.name,
                     'logo': condition.tariff.company.logo,
                     'tariff_name': condition.tariff.name,
                     'price': condition.price
                 })
-            data['cards'] += [barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]
+            data['cards2'] += [barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]
 
         elif age >= 18 and teeth == 1 and orto == '':
             data['cards'] += [barmenia, diebayerische]
