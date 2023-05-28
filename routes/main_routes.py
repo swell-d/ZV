@@ -69,44 +69,44 @@ def main_routes(app):
         data = {'cards': []}
 
         if age >= 18 and teeth == 0 and orto == '':
-            for tariff in dbf.get_tariffs('allianz', age):
+            for condition in dbf.get_conditions('allianz', age):
                 data['cards'].append({
-                    'brand': tariff.company.name,
-                    'logo': tariff.company.logo,
-                    'description': tariff.name,
-                    'price': tariff.price
+                    'brand': condition.tariff.company.name,
+                    'logo': condition.tariff.company.logo,
+                    'tariff_name': condition.tariff.name,
+                    'price': condition.price
                 })
             data['cards'] += [barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]
 
         elif age >= 18 and teeth == 1 and orto == '':
             data['cards'] += [barmenia, diebayerische]
-            for tariff in dbf.get_tariffs('allianz', age):
+            for condition in dbf.get_conditions('allianz', age):
                 data['cards'].append({
-                    'brand': tariff.company.name,
-                    'logo': tariff.company.logo,
-                    'description': tariff.name,
-                    'price': round(tariff.price * 1.25, 2)
+                    'brand': condition.tariff.company.name,
+                    'logo': condition.tariff.company.logo,
+                    'tariff_name': condition.tariff.name,
+                    'price': round(condition.price * 1.25, 2)
                 })
             data['cards'] += [muenchenerverein, nuernberger, signaliduna]
 
         elif age >= 18 and teeth == 2 and orto == '':
             data['cards'] += [barmenia]
-            for tariff in dbf.get_tariffs('allianz', age):
+            for condition in dbf.get_conditions('allianz', age):
                 data['cards'].append({
-                    'brand': tariff.company.name,
-                    'logo': tariff.company.logo,
-                    'description': tariff.name,
-                    'price': round(tariff.price * 1.5, 2)
+                    'brand': condition.tariff.company.name,
+                    'logo': condition.tariff.company.logo,
+                    'tariff_name': condition.tariff.name,
+                    'price': round(condition.price * 1.5, 2)
                 })
             data['cards'] += [signaliduna, diebayerische, muenchenerverein, nuernberger]
 
         elif age >= 18 and teeth == 3 and orto == '':
-            for tariff in dbf.get_tariffs('allianz', age):
+            for condition in dbf.get_conditions('allianz', age):
                 data['cards'].append({
-                    'brand': tariff.company.name,
-                    'logo': tariff.company.logo,
-                    'description': tariff.name,
-                    'price': round(tariff.price * 1.75, 2)
+                    'brand': condition.tariff.company.name,
+                    'logo': condition.tariff.company.logo,
+                    'tariff_name': condition.tariff.name,
+                    'price': round(condition.price * 1.75, 2)
                 })
             data['cards'] += [barmenia, signaliduna, diebayerische, muenchenerverein, nuernberger]
 

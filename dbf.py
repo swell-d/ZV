@@ -16,6 +16,12 @@ def get_companies(names):
     return [models.Company.query.filter_by(name=name).first() for name in names]
 
 
-def get_tariffs(company_short_name, age):
+def get_conditions(company_short_name, age):
     company = models.Company.query.filter_by(short_name=company_short_name).first()
-    return [tariff for tariff in company.tariffs if tariff.min_age <= age and tariff.max_age >= age]
+
+    result = []
+    for tariff in company.tariffs:
+        for condition in tariff.conditions:
+            if condition.min_age <= age and condition.max_age >= age:
+                result.append(condition)
+    return result

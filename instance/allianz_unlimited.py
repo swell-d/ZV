@@ -181,35 +181,56 @@ def create(db):
 
     allianz = models.Company.query.filter_by(short_name='allianz').first()
 
+    tarif1 = models.Tariff(
+        name='MeinZahnschutz 75 (ZS75AR)',
+        company=allianz,
+        unlimited=1,
+        description=''
+    )
+    db.session.add(tarif1)
+
+    tarif2 = models.Tariff(
+        name='MeinZahnschutz 90 (ZS90AR)',
+        company=allianz,
+        unlimited=1,
+        description=''
+    )
+    db.session.add(tarif2)
+
+    tarif3 = models.Tariff(
+        name='MeinZahnschutz 100 (ZS100AR)',
+        company=allianz,
+        unlimited=1,
+        description=''
+    )
+    db.session.add(tarif3)
+
     for i in range(int(len(table.split('\n')) / 4)):
         a1 = int(table.split('\n')[i * 4 + 0].strip().replace(',', '.'))
         a2 = float(table.split('\n')[i * 4 + 1].strip().replace(',', '.'))
         a3 = float(table.split('\n')[i * 4 + 2].strip().replace(',', '.'))
         a4 = float(table.split('\n')[i * 4 + 3].strip().replace(',', '.'))
 
-        new = models.Tariff(
-            name='MeinZahnschutz 75 (ZS75AR)',
-            company=allianz,
-            min_age=a1 if a1 != 22 else 0,
-            max_age=a1 if a1 != 65 else 99,
+        new = models.Condition(
+            tariff=tarif1,
+            min_age=a1,
+            max_age=a1,
             price=a2
         )
         db.session.add(new)
 
-        new = models.Tariff(
-            name='MeinZahnschutz 90 (ZS90AR)',
-            company=allianz,
-            min_age=a1 if a1 != 22 else 0,
-            max_age=a1 if a1 != 65 else 99,
+        new = models.Condition(
+            tariff=tarif2,
+            min_age=a1,
+            max_age=a1,
             price=a3
         )
         db.session.add(new)
 
-        new = models.Tariff(
-            name='MeinZahnschutz 100 (ZS100AR)',
-            company=allianz,
-            min_age=a1 if a1 != 22 else 0,
-            max_age=a1 if a1 != 65 else 99,
+        new = models.Condition(
+            tariff=tarif3,
+            min_age=a1,
+            max_age=a1,
             price=a4
         )
         db.session.add(new)
