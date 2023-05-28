@@ -15,7 +15,7 @@ def main_routes(app):
 
     @app.route('/', methods=['GET'])
     def home():
-        age = int(request.args.get('age')) if request.args.get('age') else 18
+        age = int(request.args.get('age')) if request.args.get('age') else 30
         teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
         prosthodontics_full = request.args.get('prosthodontics_full', '')
@@ -35,7 +35,7 @@ def main_routes(app):
 
     @app.route('/calculate', methods=['GET'])
     def calculate():
-        age = int(request.args.get('age')) if request.args.get('age') else 18
+        age = int(request.args.get('age')) if request.args.get('age') else 30
         teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
         prosthodontics_full = request.args.get('prosthodontics_full', '')
