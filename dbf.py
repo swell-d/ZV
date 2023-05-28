@@ -22,6 +22,6 @@ def get_conditions(company_short_name, age):
     result = []
     for tariff in company.tariffs:
         for condition in tariff.conditions:
-            if condition.min_age <= age and condition.max_age >= age:
+            if condition.mode and condition.min_age <= age <= condition.max_age:
                 result.append(condition)
     return result

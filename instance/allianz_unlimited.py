@@ -177,7 +177,7 @@ def create(db):
     65 
     29,20 
     44,53 
-    64,62"""
+    64,62""".split('\n')
 
     allianz = models.Company.query.filter_by(short_name='allianz').first()
 
@@ -205,11 +205,11 @@ def create(db):
     )
     db.session.add(tarif3)
 
-    for i in range(int(len(table.split('\n')) / 4)):
-        a1 = int(table.split('\n')[i * 4 + 0].strip().replace(',', '.'))
-        a2 = float(table.split('\n')[i * 4 + 1].strip().replace(',', '.'))
-        a3 = float(table.split('\n')[i * 4 + 2].strip().replace(',', '.'))
-        a4 = float(table.split('\n')[i * 4 + 3].strip().replace(',', '.'))
+    for i in range(int(len(table) / 4)):
+        a1 = int(table[i * 4 + 0].strip().replace(',', '.'))
+        a2 = float(table[i * 4 + 1].strip().replace(',', '.'))
+        a3 = float(table[i * 4 + 2].strip().replace(',', '.'))
+        a4 = float(table[i * 4 + 3].strip().replace(',', '.'))
 
         new = models.Condition(
             tariff=tarif1,

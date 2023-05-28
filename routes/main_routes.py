@@ -5,43 +5,6 @@ from flask import render_template, send_file, request
 import dbf
 import routes.error
 
-allianz = {
-    'brand': 'Allianz',
-    'logo': 'allianz.svg',
-    'description': 'Allianz description',
-    'price': 123
-}
-barmenia = {
-    'brand': 'Barmenia',
-    'logo': 'barmenia.svg',
-    'description': 'Barmenia description',
-    'price': 234
-}
-diebayerische = {
-    'brand': 'die Bayerische',
-    'logo': 'diebayerische.svg',
-    'description': 'die Bayerische description',
-    'price': 345
-}
-muenchenerverein = {
-    'brand': 'Münchener Verein',
-    'logo': 'muenchener-verein.svg',
-    'description': 'Münchener Verein description',
-    'price': 456
-}
-nuernberger = {
-    'brand': 'NÜRNBERGER',
-    'logo': 'nuernberger.svg',
-    'description': 'NÜRNBERGER description',
-    'price': 567
-}
-signaliduna = {
-    'brand': 'SIGNAL IDUNA',
-    'logo': 'signal-iduna.svg',
-    'description': 'SIGNAL IDUNA description',
-    'price': 678
-}
-
 
 def main_routes(app):
     @app.route('/static/<path:url>', methods=['GET'])
@@ -56,7 +19,9 @@ def main_routes(app):
         teeth = request.args.get('teeth') if request.args.get('teeth') else 0
         prosthodontics = request.args.get('prosthodontics', '')
         orto = request.args.get('orto', '')
+
         data = {'title': 'Заголовок', 'age': age, 'teeth': teeth, 'prosthodontics': prosthodontics, 'orto': orto}
+
         return render_template('home.html', **data)
 
     @app.route('/calculate', methods=['GET'])
@@ -68,69 +33,110 @@ def main_routes(app):
 
         data = {'cards1': [], 'cards2': [], 'cards3': []}
 
+        allianz = get_allianz(age, teeth, prosthodontics, orto)
+        barmenia = get_barmenia(age, teeth, prosthodontics, orto)
+        diebayerische = get_diebayerische(age, teeth, prosthodontics, orto)
+        muenchenerverein = get_muenchenerverein(age, teeth, prosthodontics, orto)
+        nuernberger = get_nuernberger(age, teeth, prosthodontics, orto)
+        signaliduna = get_signaliduna(age, teeth, prosthodontics, orto)
+
         if age >= 18 and teeth == 0 and not orto:
-            for condition in dbf.get_conditions('allianz', age):
-                data['cards1'].append({
-                    'brand': condition.tariff.company.name,
-                    'logo': condition.tariff.company.logo,
-                    'tariff_name': condition.tariff.name,
-                    'price': condition.price
-                })
-            data['cards1'] += [barmenia]
-            data['cards2'] += [diebayerische, muenchenerverein, nuernberger, signaliduna]
+            data['cards1'] += [*allianz, *barmenia]
+            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
         elif age >= 18 and teeth == 1 and not orto:
-            data['cards1'] += [barmenia, diebayerische]
-            for condition in dbf.get_conditions('allianz', age):
-                data['cards1'].append({
-                    'brand': condition.tariff.company.name,
-                    'logo': condition.tariff.company.logo,
-                    'tariff_name': condition.tariff.name,
-                    'price': round(condition.price * 1.25, 2)
-                })
-            data['cards2'] += [muenchenerverein, nuernberger, signaliduna]
+            data['cards1'] += [*barmenia, *diebayerische, *allianz]
+            data['cards2'] += [*muenchenerverein, *nuernberger, *signaliduna]
 
         elif age >= 18 and teeth == 2 and not orto:
-            data['cards1'] += [barmenia]
-            for condition in dbf.get_conditions('allianz', age):
-                data['cards1'].append({
-                    'brand': condition.tariff.company.name,
-                    'logo': condition.tariff.company.logo,
-                    'tariff_name': condition.tariff.name,
-                    'price': round(condition.price * 1.5, 2)
-                })
-            data['cards1'] += [signaliduna]
-            data['cards2'] += [diebayerische, muenchenerverein, nuernberger]
+            data['cards1'] += [*barmenia, *allianz, *signaliduna]
+            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
 
         elif age >= 18 and teeth == 3 and not orto:
-            for condition in dbf.get_conditions('allianz', age):
-                data['cards1'].append({
-                    'brand': condition.tariff.company.name,
-                    'logo': condition.tariff.company.logo,
-                    'tariff_name': condition.tariff.name,
-                    'price': round(condition.price * 1.75, 2)
-                })
-            data['cards1'] += [barmenia, signaliduna]
-            data['cards2'] += [diebayerische, muenchenerverein, nuernberger]
+            data['cards1'] += [*allianz, *barmenia, *signaliduna]
+            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
 
         elif age >= 18 and teeth >= 4 and not orto:
-            data['cards1'] += [nuernberger]
-            
-            for condition in dbf.get_conditions('allianz', age):
-                data['cards3'].append({
-                    'brand': condition.tariff.company.name,
-                    'logo': condition.tariff.company.logo,
-                    'tariff_name': condition.tariff.name,
-                    'price': round(condition.price * 1.75, 2)
-                })
-            data['cards3'] += [barmenia, diebayerische, muenchenerverein, signaliduna]
+            data['cards1'] += [*nuernberger]
+            data['cards3'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *signaliduna]
 
         elif age >= 18 and orto:
-            data = {'cards1': [diebayerische, muenchenerverein]}
+            data['cards1'] += [*diebayerische, *muenchenerverein]
+            data['cards3'] += [*allianz, *barmenia, *nuernberger, *signaliduna]
 
         elif age < 18 and not orto:
-            data = {'cards1': [allianz, barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]}
+            data['cards1'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
+
         elif age < 18 and orto:
-            data = {'cards1': [allianz, signaliduna, barmenia, diebayerische, muenchenerverein, nuernberger]}
+            data['cards1'] += [*allianz, *signaliduna, *barmenia, *diebayerische, *muenchenerverein, *nuernberger]
 
         return render_template('results.html', **data)
+
+
+def get_allianz(age, teeth, prosthodontics, orto):
+    result = []
+
+    if teeth == 0:
+        price_increase = 1.0
+    elif teeth == 1:
+        price_increase = 1.25
+    elif teeth == 2:
+        price_increase = 1.5
+    elif teeth == 3:
+        price_increase = 1.75
+    else:
+        price_increase = 1.75
+
+    for condition in dbf.get_conditions('allianz', age):
+        result.append({
+            'brand': condition.tariff.company.name,
+            'logo': condition.tariff.company.logo,
+            'tariff_name': condition.tariff.name,
+            'price': round(condition.price * price_increase, 2)
+        })
+    return result
+
+
+def get_barmenia(age, teeth, prosthodontics, orto):
+    return [{
+        'brand': 'Barmenia',
+        'logo': 'barmenia.svg',
+        'tariff_name': 'Barmenia description',
+        'price': 234
+    }]
+
+
+def get_diebayerische(age, teeth, prosthodontics, orto):
+    return [{
+        'brand': 'die Bayerische',
+        'logo': 'diebayerische.svg',
+        'tariff_name': 'die Bayerische description',
+        'price': 345
+    }]
+
+
+def get_muenchenerverein(age, teeth, prosthodontics, orto):
+    return [{
+        'brand': 'Münchener Verein',
+        'logo': 'muenchener-verein.svg',
+        'tariff_name': 'Münchener Verein description',
+        'price': 456
+    }]
+
+
+def get_nuernberger(age, teeth, prosthodontics, orto):
+    return [{
+        'brand': 'NÜRNBERGER',
+        'logo': 'nuernberger.svg',
+        'tariff_name': 'NÜRNBERGER description',
+        'price': 567
+    }]
+
+
+def get_signaliduna(age, teeth, prosthodontics, orto):
+    return [{
+        'brand': 'SIGNAL IDUNA',
+        'logo': 'signal-iduna.svg',
+        'tariff_name': 'SIGNAL IDUNA description',
+        'price': 678
+    }]
