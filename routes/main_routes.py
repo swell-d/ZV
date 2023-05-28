@@ -68,7 +68,7 @@ def main_routes(app):
 
         data = {'cards1': [], 'cards2': [], 'cards3': []}
 
-        if age >= 18 and teeth == 0 and orto == '':
+        if age >= 18 and teeth == 0 and not orto:
             for condition in dbf.get_conditions('allianz', age):
                 data['cards1'].append({
                     'brand': condition.tariff.company.name,
@@ -76,49 +76,61 @@ def main_routes(app):
                     'tariff_name': condition.tariff.name,
                     'price': condition.price
                 })
-            data['cards2'] += [barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]
+            data['cards1'] += [barmenia]
+            data['cards2'] += [diebayerische, muenchenerverein, nuernberger, signaliduna]
 
-        elif age >= 18 and teeth == 1 and orto == '':
-            data['cards'] += [barmenia, diebayerische]
+        elif age >= 18 and teeth == 1 and not orto:
+            data['cards1'] += [barmenia, diebayerische]
             for condition in dbf.get_conditions('allianz', age):
-                data['cards'].append({
+                data['cards1'].append({
                     'brand': condition.tariff.company.name,
                     'logo': condition.tariff.company.logo,
                     'tariff_name': condition.tariff.name,
                     'price': round(condition.price * 1.25, 2)
                 })
-            data['cards'] += [muenchenerverein, nuernberger, signaliduna]
+            data['cards2'] += [muenchenerverein, nuernberger, signaliduna]
 
-        elif age >= 18 and teeth == 2 and orto == '':
-            data['cards'] += [barmenia]
+        elif age >= 18 and teeth == 2 and not orto:
+            data['cards1'] += [barmenia]
             for condition in dbf.get_conditions('allianz', age):
-                data['cards'].append({
+                data['cards1'].append({
                     'brand': condition.tariff.company.name,
                     'logo': condition.tariff.company.logo,
                     'tariff_name': condition.tariff.name,
                     'price': round(condition.price * 1.5, 2)
                 })
-            data['cards'] += [signaliduna, diebayerische, muenchenerverein, nuernberger]
+            data['cards1'] += [signaliduna]
+            data['cards2'] += [diebayerische, muenchenerverein, nuernberger]
 
-        elif age >= 18 and teeth == 3 and orto == '':
+        elif age >= 18 and teeth == 3 and not orto:
             for condition in dbf.get_conditions('allianz', age):
-                data['cards'].append({
+                data['cards1'].append({
                     'brand': condition.tariff.company.name,
                     'logo': condition.tariff.company.logo,
                     'tariff_name': condition.tariff.name,
                     'price': round(condition.price * 1.75, 2)
                 })
-            data['cards'] += [barmenia, signaliduna, diebayerische, muenchenerverein, nuernberger]
+            data['cards1'] += [barmenia, signaliduna]
+            data['cards2'] += [diebayerische, muenchenerverein, nuernberger]
 
-        elif age >= 18 and teeth >= 4 and orto == '':
-            data['cards'] += [nuernberger]
+        elif age >= 18 and teeth >= 4 and not orto:
+            data['cards1'] += [nuernberger]
+            
+            for condition in dbf.get_conditions('allianz', age):
+                data['cards3'].append({
+                    'brand': condition.tariff.company.name,
+                    'logo': condition.tariff.company.logo,
+                    'tariff_name': condition.tariff.name,
+                    'price': round(condition.price * 1.75, 2)
+                })
+            data['cards3'] += [barmenia, diebayerische, muenchenerverein, signaliduna]
 
-        elif age >= 18 and orto != '':
-            data = {'cards': [diebayerische, muenchenerverein]}
+        elif age >= 18 and orto:
+            data = {'cards1': [diebayerische, muenchenerverein]}
 
-        elif age < 18 and orto == '':
-            data = {'cards': [allianz, barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]}
-        elif age < 18 and orto != '':
-            data = {'cards': [allianz, signaliduna, barmenia, diebayerische, muenchenerverein, nuernberger]}
+        elif age < 18 and not orto:
+            data = {'cards1': [allianz, barmenia, diebayerische, muenchenerverein, nuernberger, signaliduna]}
+        elif age < 18 and orto:
+            data = {'cards1': [allianz, signaliduna, barmenia, diebayerische, muenchenerverein, nuernberger]}
 
         return render_template('results.html', **data)
