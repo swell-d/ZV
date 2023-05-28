@@ -1,7 +1,7 @@
 import models
 
 
-def start(db):
+def create(db):
     c1 = models.Company(
         name='Allianz',
         short_name='allianz',

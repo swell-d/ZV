@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_wtf import CSRFProtect
 
+from instance import companies, allianz_unlimited
 from routes import error, main_routes
 
 csrf = CSRFProtect()
@@ -23,9 +24,9 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-        from instance import add1, add2
-        add1.start(db)
-        add2.start(db)
+
+        companies.create(db)
+        allianz_unlimited.create(db)
 
     @app.after_request
     def add_header(response):

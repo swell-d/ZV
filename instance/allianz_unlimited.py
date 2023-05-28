@@ -1,7 +1,7 @@
 import models
 
 
-def start(db):
+def create(db):
     table = """22 
     19,70 
     28,02 
