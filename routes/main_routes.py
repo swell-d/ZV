@@ -159,9 +159,14 @@ def get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlim
 
 
 def get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
-    return [{
-        'brand': 'SIGNAL IDUNA',
-        'logo': 'signal-iduna.svg',
-        'tariff_name': 'SIGNAL IDUNA description',
-        'price': 678
-    }]
+    result = []
+
+    for condition in dbf.get_conditions('signaliduna', age, teeth, prosthodontics, prosthodontics_full, orto,
+                                        unlimited):
+        result.append({
+            'brand': condition.tariff.company.name,
+            'logo': condition.tariff.company.logo,
+            'tariff_name': condition.tariff.name,
+            'price': condition.price
+        })
+    return result
