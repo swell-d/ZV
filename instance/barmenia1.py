@@ -33,7 +33,7 @@ def create(db):
         name='Mehr Zahn 80',
         company=barmenia,
         unlimited=0,
-        prosthodontics=0,
+        prosthodontics=80,
         description=''
     )
     db.session.add(tarif1)
@@ -42,7 +42,7 @@ def create(db):
         name='Mehr Zahn 90',
         company=barmenia,
         unlimited=0,
-        prosthodontics=0,
+        prosthodontics=90,
         description=''
     )
     db.session.add(tarif2)
@@ -51,7 +51,7 @@ def create(db):
         name='Mehr Zahn 100',
         company=barmenia,
         unlimited=0,
-        prosthodontics=0,
+        prosthodontics=100,
         description=''
     )
     db.session.add(tarif3)
