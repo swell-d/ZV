@@ -68,3 +68,11 @@
     </div>
     {% endfor %}
 </div>
+
+{% if not cards1 and not cards2 and not cards3 %}
+<div class="row">
+    <div class="col">
+        <h3 class="mt-4 mb-3">К сожалению, подходящие варианты не найдены. Попробуйте задать другие условия поиска</h3>
+    </div>
+</div>
+{% endif %}
