@@ -30,15 +30,11 @@ def create_app():
 
         allianz_unlimited.create(db)
         allianz.create(db)
-
         # barmenia1.create(db)
         barmenia2.create(db)
         barmenia3.create(db)
-
         diebayerische.create(db)
-
         muenchenerverein.create(db)
-
         signaliduna.create(db)
 
     @app.after_request
