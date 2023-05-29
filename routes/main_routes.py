@@ -91,6 +91,9 @@ def main_routes(app):
                 data['cards1'] += [*diebayerische, *muenchenerverein]
                 data['cards3'] += [*allianz, *barmenia, *nuernberger, *signaliduna]
 
+        data['cards2'] = sorted(data['cards2'], key=lambda d: d['price'])
+        data['cards3'] = sorted(data['cards3'], key=lambda d: d['price'])
+
         return render_template('results.html', **data)
 
 
