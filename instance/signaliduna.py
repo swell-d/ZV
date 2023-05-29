@@ -78,8 +78,8 @@ def create(db):
     tarif3 = models.Tariff(
         name='ZahnPLUS',
         company=signaliduna,
-        unlimited=0,
-        prosthodontics=90,
+        unlimited=1,
+        prosthodontics=70,
         description=''
     )
     db.session.add(tarif3)
@@ -88,7 +88,7 @@ def create(db):
         name='ZahnTOPpur',
         company=signaliduna,
         unlimited=0,
-        prosthodontics=100,
+        prosthodontics=90,
         description=''
     )
     db.session.add(tarif4)
@@ -96,8 +96,8 @@ def create(db):
     tarif5 = models.Tariff(
         name='ZahnTOP',
         company=signaliduna,
-        unlimited=0,
-        prosthodontics=100,
+        unlimited=1,
+        prosthodontics=90,
         description=''
     )
     db.session.add(tarif5)
@@ -114,7 +114,7 @@ def create(db):
     tarif7 = models.Tariff(
         name='ZahnEXKLUSIV',
         company=signaliduna,
-        unlimited=0,
+        unlimited=1,
         prosthodontics=100,
         description=''
     )

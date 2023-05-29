@@ -150,6 +150,7 @@ def get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, 
 
 
 def get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
+    return []
     return [{
         'brand': 'NÜRNBERGER',
         'logo': 'nuernberger.svg',
