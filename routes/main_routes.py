@@ -22,10 +22,10 @@ def main_routes(app):
         orto = request.args.get('orto', '')
         unlimited = request.args.get('unlimited', '')
 
-        data = {'title': 'Заголовок', 
-                'age': age, 
-                'teeth': teeth, 
-                'prosthodontics': prosthodontics, 
+        data = {'title': 'Заголовок',
+                'age': age,
+                'teeth': teeth,
+                'prosthodontics': prosthodontics,
                 'prosthodontics_full': prosthodontics_full,
                 'orto': orto,
                 'unlimited': unlimited
@@ -109,12 +109,16 @@ def get_allianz(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited
 
 
 def get_barmenia(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
-    return [{
-        'brand': 'Barmenia',
-        'logo': 'barmenia.svg',
-        'tariff_name': 'Barmenia description',
-        'price': 234
-    }]
+    result = []
+
+    for condition in dbf.get_conditions('barmenia', age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
+        result.append({
+            'brand': condition.tariff.company.name,
+            'logo': condition.tariff.company.logo,
+            'tariff_name': condition.tariff.name,
+            'price': condition.price
+        })
+    return result
 
 
 def get_diebayerische(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):

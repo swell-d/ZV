@@ -23,11 +23,13 @@ def get_conditions(company_short_name, age, teeth, prosthodontics, prosthodontic
     for tariff in company.tariffs:
         if not tariff.mode: continue
 
-        if unlimited and not tariff.unlimited: continue
-        if not unlimited and tariff.unlimited: continue
+        if prosthodontics and tariff.prosthodontics == 0: continue
 
         if prosthodontics_full and tariff.prosthodontics != 100: continue
         if not prosthodontics_full and tariff.prosthodontics == 100: continue
+
+        if unlimited and not tariff.unlimited: continue
+        if not unlimited and tariff.unlimited: continue
 
         for condition in tariff.conditions:
             if not condition.mode: continue

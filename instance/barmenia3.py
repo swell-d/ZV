@@ -3,44 +3,44 @@ import models
 
 def create(db):
     table = """0-20 
-    8,43 
-    13,15 
-    17,47 
+    15,70 
+    16,00 
+    16,30 
     21-30 
-    12,94 
-    15,89 
-    18,77 
+    13,60 
+    16,10 
+    18,50 
     31-40 
-    17,39 
-    23,58 
-    29,88 
+    19,60 
+    25,80 
+    31,50 
     41-50 
-    21,55 
-    31,56 
-    41,73 
+    24,90 
+    34,10 
+    42,70 
     51-60 
-    27,10 
-    41,89 
-    56,93 
-    61-99 
-    30,64 
-    48,04 
-    65,63""".split('\n')
+    32,90 
+    46,50 
+    59,40 
+    61-99
+    38,20 
+    54,70 
+    70,40""".split('\n')
 
-    allianz = models.Company.query.filter_by(short_name='allianz').first()
+    barmenia = models.Company.query.filter_by(short_name='barmenia').first()
 
     tarif1 = models.Tariff(
-        name='MeinZahnschutz 75 (ZS75)',
-        company=allianz,
+        name='Mehr Zahn 80, Mehr Zahnvorsorge Bonus',
+        company=barmenia,
         unlimited=0,
-        prosthodontics=75,
+        prosthodontics=80,
         description=''
     )
     db.session.add(tarif1)
 
     tarif2 = models.Tariff(
-        name='MeinZahnschutz 90 (ZS90)',
-        company=allianz,
+        name='Mehr Zahn 90, Mehr Zahnvorsorge Bonus',
+        company=barmenia,
         unlimited=0,
         prosthodontics=90,
         description=''
@@ -48,8 +48,8 @@ def create(db):
     db.session.add(tarif2)
 
     tarif3 = models.Tariff(
-        name='MeinZahnschutz 100 (ZS100)',
-        company=allianz,
+        name='Mehr Zahn 100, Mehr Zahnvorsorge Bonus',
+        company=barmenia,
         unlimited=0,
         prosthodontics=100,
         description=''
