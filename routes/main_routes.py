@@ -122,12 +122,16 @@ def get_barmenia(age, teeth, prosthodontics, prosthodontics_full, orto, unlimite
 
 
 def get_diebayerische(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
-    return [{
-        'brand': 'die Bayerische',
-        'logo': 'diebayerische.svg',
-        'tariff_name': 'die Bayerische description',
-        'price': 345
-    }]
+    result = []
+
+    for condition in dbf.get_conditions('diebayerische', age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
+        result.append({
+            'brand': condition.tariff.company.name,
+            'logo': condition.tariff.company.logo,
+            'tariff_name': condition.tariff.name,
+            'price': condition.price
+        })
+    return result
 
 
 def get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
