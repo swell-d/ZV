@@ -36,4 +36,15 @@ def get_conditions(company_short_name, age, teeth, prosthodontics, prosthodontic
             if condition.min_age <= age <= condition.max_age:
                 result.append(condition)
 
+
+    pr_out = False
+    pr_inn = False
+    for each in result:
+        if each.tariff.prosthodontics == 0: pr_out = True
+        if each.tariff.prosthodontics != 0: pr_inn = True
+    if pr_out and pr_inn and not prosthodontics:
+        result = [each for each in result if each.tariff.prosthodontics == 0]
+    if pr_out and pr_inn and prosthodontics:
+        result = [each for each in result if each.tariff.prosthodontics != 0]
+
     return result
