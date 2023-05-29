@@ -4,63 +4,62 @@
 <div class="row mb-3">
     <div class="col">
         <h2 class="mb-4">Подбор выгодной стоматологической страховки</h2>
-        <form method="post" enctype="multipart/form-data">
 
-            <div class="row align-items-center mb-3" id="age_block">
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-                    <label for="age" class="col-form-label">Возраст</label>
-                </div>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-                    <input type="number" id="age" name="age" class="form-control"
-                           aria-describedby="Возраст" value="{{ age }}" oninput="resultReload()">
-                </div>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+        <div class="row align-items-center mb-3" id="age_block">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <label for="age" class="col-form-label">Возраст</label>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <input type="number" id="age" name="age" class="form-control"
+                       aria-describedby="Возраст" value="{{ age }}" oninput="resultReload()">
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <span id="ageHelpInline" class="form-text">
                         Введите количество полных лет страхуемого лица
                     </span>
-                </div>
             </div>
+        </div>
 
-            <div class="row align-items-center mb-3" id="teeth_block">
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-                    <label for="teeth" class="col-form-label">Kоличество отсутствующих зубов</label>
-                </div>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-                    <input type="number" id="teeth" name="teeth" class="form-control"
-                           aria-describedby="Kоличество отсутствующих зубов" value="{{ teeth }}" oninput="resultReload()">
-                </div>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+        <div class="row align-items-center mb-3" id="teeth_block">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <label for="teeth" class="col-form-label">Kоличество отсутствующих зубов</label>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <input type="number" id="teeth" name="teeth" class="form-control"
+                       aria-describedby="Kоличество отсутствующих зубов" value="{{ teeth }}" oninput="resultReload()">
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                     <span id="teethHelpInline" class="form-text">
                         "Восьмёрки" не считаются
                     </span>
-                </div>
             </div>
+        </div>
 
-            <div class="form-check form-switch mb-3" id="prosthodontics_block">
-                <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics"
-                       oninput="resultReload()" {% if prosthodontics %}checked{% endif %}>
-                <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
-            </div>
+        <div class="form-check form-switch mb-3" id="prosthodontics_block">
+            <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics"
+                   oninput="resultReload()" {% if prosthodontics %}checked{% endif %}>
+            <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
+        </div>
 
-            <div class="form-check form-switch mb-3" id="prosthodontics_full_block">
-                <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics_full" name="prosthodontics_full"
-                       oninput="resultReload()" {% if prosthodontics_full %}checked{% endif %}>
-                <label class="form-check-label" for="prosthodontics_full">100% возмещение стоимости протезирования</label>
-            </div>
+        <div class="form-check form-switch mb-3" id="prosthodontics_full_block">
+            <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics_full"
+                   name="prosthodontics_full"
+                   oninput="resultReload()" {% if prosthodontics_full %}checked{% endif %}>
+            <label class="form-check-label" for="prosthodontics_full">100% возмещение стоимости протезирования</label>
+        </div>
 
-            <div class="form-check form-switch mb-3" id="orto_block">
-                <input class="form-check-input" type="checkbox" role="switch" id="orto" name="orto"
-                       oninput="resultReload()" {% if orto %}checked{% endif %}>
-                <label class="form-check-label" for="orto">Планируется ли ортодонтия?</label>
-            </div>
+        <div class="form-check form-switch mb-3" id="orto_block">
+            <input class="form-check-input" type="checkbox" role="switch" id="orto" name="orto"
+                   oninput="resultReload()" {% if orto %}checked{% endif %}>
+            <label class="form-check-label" for="orto">Планируется ли ортодонтия?</label>
+        </div>
 
-            <div class="form-check form-switch mb-3" id="unlimited_block">
-                <input class="form-check-input" type="checkbox" role="switch" id="unlimited" name="unlimited"
-                       oninput="resultReload()" {% if unlimited %}checked{% endif %}>
-                <label class="form-check-label" for="unlimited">Стоимость страховки зафиксирована и не будет расти</label>
-            </div>
+        <div class="form-check form-switch mb-3" id="unlimited_block">
+            <input class="form-check-input" type="checkbox" role="switch" id="unlimited" name="unlimited"
+                   oninput="resultReload()" {% if unlimited %}checked{% endif %}>
+            <label class="form-check-label" for="unlimited">Стоимость страховки зафиксирована и не будет расти</label>
+        </div>
 
-        </form>
     </div>
 </div>
 

@@ -1,18 +1,14 @@
 import os
 
 from flask import Flask
-from flask_wtf import CSRFProtect
 
 from instance import companies, allianz_unlimited, allianz, barmenia2, barmenia3, diebayerische, muenchenerverein, \
     signaliduna
 from routes import error, main_routes
 
-csrf = CSRFProtect()
-
 
 def create_app():
     app = Flask(__name__)
-    csrf.init_app(app)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'my-secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 
