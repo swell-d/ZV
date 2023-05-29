@@ -64,7 +64,7 @@ def main_routes(app):
         elif 18 <= age <= 99:
             if not orto:
                 if not prosthodontics:
-                    data['cards1'] += [barmenia[0]]
+                    data['cards1'] += [barmenia[0]] if len(barmenia) else []
                     data['cards2'] += [*allianz, *diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
                 elif teeth == 0:
