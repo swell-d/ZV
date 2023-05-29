@@ -137,10 +137,6 @@ def create(db):
         a6 = float(each.strip().split('	')[6].replace(',', '.'))
         a7 = float(each.strip().split('	')[7].replace(',', '.'))
 
-        if not a3: continue
-        if not a5: continue
-        if not a7: continue
-
         new = models.Condition(
             tariff=tarif1,
             min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
@@ -157,13 +153,14 @@ def create(db):
         )
         db.session.add(new)
 
-        new = models.Condition(
-            tariff=tarif3,
-            min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
-            max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
-            price=a3
-        )
-        db.session.add(new)
+        if a3:
+            new = models.Condition(
+                tariff=tarif3,
+                min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
+                max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
+                price=a3
+            )
+            db.session.add(new)
 
         new = models.Condition(
             tariff=tarif4,
@@ -173,13 +170,14 @@ def create(db):
         )
         db.session.add(new)
 
-        new = models.Condition(
-            tariff=tarif5,
-            min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
-            max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
-            price=a5
-        )
-        db.session.add(new)
+        if a5:
+            new = models.Condition(
+                tariff=tarif5,
+                min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
+                max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
+                price=a5
+            )
+            db.session.add(new)
 
         new = models.Condition(
             tariff=tarif6,
@@ -189,12 +187,13 @@ def create(db):
         )
         db.session.add(new)
 
-        new = models.Condition(
-            tariff=tarif7,
-            min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
-            max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
-            price=a7
-        )
-        db.session.add(new)
+        if a7:
+            new = models.Condition(
+                tariff=tarif7,
+                min_age=int(a0) if '-' not in a0 else int(a0.split('-')[0]),
+                max_age=int(a0) if '-' not in a0 else int(a0.split('-')[1]),
+                price=a7
+            )
+            db.session.add(new)
 
     db.session.commit()
