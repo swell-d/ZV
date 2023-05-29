@@ -22,7 +22,7 @@ def main_routes(app):
         orto = request.args.get('orto', '')
         unlimited = request.args.get('unlimited', '')
 
-        data = {'title': 'Заголовок',
+        data = {'title': 'Подбор выгодной стоматологической страховки',
                 'age': age,
                 'teeth': teeth,
                 'prosthodontics': prosthodontics,
@@ -51,35 +51,45 @@ def main_routes(app):
         nuernberger = get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
         signaliduna = get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
 
-        if age >= 18 and teeth == 0 and not orto:
-            data['cards1'] += [*allianz, *barmenia]
-            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
-        elif age >= 18 and teeth == 1 and not orto:
-            data['cards1'] += [*barmenia, *diebayerische, *allianz]
-            data['cards2'] += [*muenchenerverein, *nuernberger, *signaliduna]
+        if 0 <= age < 18:
+            if not orto:
+                data['cards1'] += [*allianz, *barmenia]
+                data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
-        elif age >= 18 and teeth == 2 and not orto:
-            data['cards1'] += [*barmenia, *allianz, *signaliduna]
-            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
+            elif orto:
+                data['cards1'] += [*allianz, *signaliduna]
+                data['cards2'] += [*barmenia, *diebayerische, *muenchenerverein, *nuernberger]
 
-        elif age >= 18 and teeth == 3 and not orto:
-            data['cards1'] += [*allianz, *barmenia, *signaliduna]
-            data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
+        elif 18 <= age <= 99:
+            if not orto:
+                if not prosthodontics:
+                    data['cards1'] += [barmenia[0]]
+                    data['cards2'] += [*allianz, *diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
-        elif age >= 18 and teeth >= 4 and not orto:
-            data['cards1'] += [*nuernberger]
-            data['cards3'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *signaliduna]
+                elif teeth == 0:
+                    data['cards1'] += [*allianz, *barmenia]
+                    data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
 
-        elif age >= 18 and orto:
-            data['cards1'] += [*diebayerische, *muenchenerverein]
-            data['cards3'] += [*allianz, *barmenia, *nuernberger, *signaliduna]
+                elif teeth == 1:
+                    data['cards1'] += [*barmenia, *diebayerische, *allianz]
+                    data['cards2'] += [*muenchenerverein, *nuernberger, *signaliduna]
 
-        elif age < 18 and not orto:
-            data['cards1'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *nuernberger, *signaliduna]
+                elif teeth == 2:
+                    data['cards1'] += [*barmenia, *allianz, *signaliduna]
+                    data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
 
-        elif age < 18 and orto:
-            data['cards1'] += [*allianz, *signaliduna, *barmenia, *diebayerische, *muenchenerverein, *nuernberger]
+                elif teeth == 3:
+                    data['cards1'] += [*allianz, *barmenia, *signaliduna]
+                    data['cards2'] += [*diebayerische, *muenchenerverein, *nuernberger]
+
+                elif teeth >= 4:
+                    data['cards1'] += [*nuernberger]
+                    data['cards3'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *signaliduna]
+
+            elif orto:
+                data['cards1'] += [*diebayerische, *muenchenerverein]
+                data['cards3'] += [*allianz, *barmenia, *nuernberger, *signaliduna]
 
         return render_template('results.html', **data)
 
@@ -93,9 +103,7 @@ def get_allianz(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited
         price_increase = 1.25
     elif teeth == 2:
         price_increase = 1.5
-    elif teeth == 3:
-        price_increase = 1.75
-    else:
+    elif teeth >= 3:
         price_increase = 1.75
 
     for condition in dbf.get_conditions('allianz', age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
@@ -150,12 +158,11 @@ def get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, 
 
 
 def get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
-    return []
     return [{
         'brand': 'NÜRNBERGER',
         'logo': 'nuernberger.svg',
-        'tariff_name': 'NÜRNBERGER description',
-        'price': 567
+        'tariff_name': 'Platzhalter',
+        'price': 999
     }]
 
 

@@ -90,6 +90,7 @@ def create(db):
         company=diebayerische,
         unlimited=0,
         prosthodontics=80,
+        orto=1,
         description=''
     )
     db.session.add(tarif1)
@@ -99,6 +100,7 @@ def create(db):
         company=diebayerische,
         unlimited=0,
         prosthodontics=90,
+        orto=1,
         description=''
     )
     db.session.add(tarif2)
@@ -108,6 +110,7 @@ def create(db):
         company=diebayerische,
         unlimited=0,
         prosthodontics=100,
+        orto=1,
         description=''
     )
     db.session.add(tarif3)
@@ -117,6 +120,7 @@ def create(db):
         company=diebayerische,
         unlimited=0,
         prosthodontics=100,
+        orto=1,
         description=''
     )
     db.session.add(tarif4)
@@ -126,6 +130,7 @@ def create(db):
     #     company=diebayerische,
     #     unlimited=0,
     #     prosthodontics=0,
+    #     orto=1,
     #     description=''
     # )
     # db.session.add(tarif5)

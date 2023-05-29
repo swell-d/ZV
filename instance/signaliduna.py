@@ -62,6 +62,7 @@ def create(db):
         company=signaliduna,
         unlimited=0,
         prosthodontics=50,
+        orto=0,
         description=''
     )
     db.session.add(tarif1)
@@ -71,6 +72,7 @@ def create(db):
         company=signaliduna,
         unlimited=0,
         prosthodontics=70,
+        orto=0,
         description=''
     )
     db.session.add(tarif2)
@@ -80,6 +82,7 @@ def create(db):
         company=signaliduna,
         unlimited=1,
         prosthodontics=70,
+        orto=0,
         description=''
     )
     db.session.add(tarif3)
@@ -89,6 +92,7 @@ def create(db):
         company=signaliduna,
         unlimited=0,
         prosthodontics=90,
+        orto=0,
         description=''
     )
     db.session.add(tarif4)
@@ -98,6 +102,7 @@ def create(db):
         company=signaliduna,
         unlimited=1,
         prosthodontics=90,
+        orto=0,
         description=''
     )
     db.session.add(tarif5)
@@ -107,6 +112,7 @@ def create(db):
         company=signaliduna,
         unlimited=0,
         prosthodontics=100,
+        orto=0,
         description=''
     )
     db.session.add(tarif6)
@@ -116,6 +122,7 @@ def create(db):
         company=signaliduna,
         unlimited=1,
         prosthodontics=100,
+        orto=0,
         description=''
     )
     db.session.add(tarif7)

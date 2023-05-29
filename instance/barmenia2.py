@@ -9,6 +9,7 @@ def create(db):
     #     company=barmenia,
     #     unlimited=0,
     #     prosthodontics=0,
+    #     orto=0,
     #     description=''
     # )
     # db.session.add(tarif1)
@@ -18,6 +19,7 @@ def create(db):
         company=barmenia,
         unlimited=0,
         prosthodontics=0,
+        orto=0,
         description=''
     )
     db.session.add(tarif2)

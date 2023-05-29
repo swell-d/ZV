@@ -186,6 +186,7 @@ def create(db):
         company=allianz,
         unlimited=1,
         prosthodontics=75,
+        orto=0,
         description=''
     )
     db.session.add(tarif1)
@@ -195,6 +196,7 @@ def create(db):
         company=allianz,
         unlimited=1,
         prosthodontics=90,
+        orto=0,
         description=''
     )
     db.session.add(tarif2)
@@ -204,6 +206,7 @@ def create(db):
         company=allianz,
         unlimited=1,
         prosthodontics=100,
+        orto=0,
         description=''
     )
     db.session.add(tarif3)

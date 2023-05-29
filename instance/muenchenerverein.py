@@ -43,6 +43,7 @@ def create(db):
         company=muenchenerverein,
         unlimited=0,
         prosthodontics=75,
+        orto=1,
         description=''
     )
     db.session.add(tarif1)
@@ -52,6 +53,7 @@ def create(db):
         company=muenchenerverein,
         unlimited=0,
         prosthodontics=85,
+        orto=1,
         description=''
     )
     db.session.add(tarif2)
@@ -61,6 +63,7 @@ def create(db):
         company=muenchenerverein,
         unlimited=0,
         prosthodontics=100,
+        orto=1,
         description=''
     )
     db.session.add(tarif3)
