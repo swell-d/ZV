@@ -36,6 +36,7 @@ def create_app():
 
     @app.after_request
     def add_header(response):
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
         response.headers['X-Frame-Options'] = 'SAMEORIGIN'
         response.headers['Content-Security-Policy'] = \
             "default-src 'self'; " \
