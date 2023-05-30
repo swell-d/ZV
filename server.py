@@ -11,6 +11,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'my-secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 600
 
     from database import get_db
     db = get_db()
