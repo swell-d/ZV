@@ -1,1 +1,1 @@
-cd /var/www/zv/ && sudo git reset --hard && sudo git pull && sudo chown -R swell:www-data * && sudo chmod -R 775 * && source venv/bin/activate && python -m pip install -r requirements.txt && deactivate && sudo service zv restart && sudo service nginx reload
+cd /var/www/zv/ && sudo git reset --hard && sudo git pull && sudo chown -R swell:www-data * && sudo chmod -R 775 * && source venv/bin/activate && python -m pip install -r requirements.txt --upgrade && deactivate && sudo service zv restart && sudo service nginx reload
