@@ -17,10 +17,10 @@ def main_routes(app):
     def home():
         age = int(request.args.get('age')) if request.args.get('age') else 30
         teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
-        prosthodontics = request.args.get('prosthodontics', '')
-        prosthodontics_full = request.args.get('prosthodontics_full', '')
-        orto = request.args.get('orto', '')
-        unlimited = request.args.get('unlimited', '')
+        prosthodontics = request.args.get('prosthodontics', '') == 'true'
+        prosthodontics_full = request.args.get('prosthodontics_full', '') == 'true'
+        orto = request.args.get('orto', '') == 'true'
+        unlimited = request.args.get('unlimited', '') == 'true'
 
         data = {'title': 'Подбор выгодной стоматологической страховки',
                 'age': age,
@@ -37,10 +37,10 @@ def main_routes(app):
     def calculate():
         age = int(request.args.get('age')) if request.args.get('age') else 30
         teeth = int(request.args.get('teeth')) if request.args.get('teeth') else 0
-        prosthodontics = request.args.get('prosthodontics', '')
-        prosthodontics_full = request.args.get('prosthodontics_full', '')
-        orto = request.args.get('orto', '')
-        unlimited = request.args.get('unlimited', '')
+        prosthodontics = request.args.get('prosthodontics', '') == 'true'
+        prosthodontics_full = request.args.get('prosthodontics_full', '') == 'true'
+        orto = request.args.get('orto', '') == 'true'
+        unlimited = request.args.get('unlimited', '') == 'true'
 
         data = {'cards1': [], 'cards2': [], 'cards3': []}
 
