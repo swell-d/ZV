@@ -20,7 +20,7 @@ talisman = Talisman()
 
 def create_app():
     app = Flask(__name__)
-    talisman.init_app(app, content_security_policy=csp)
+    talisman.init_app(app, content_security_policy=csp, session_cookie_samesite='Strict')
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'my-secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 600
