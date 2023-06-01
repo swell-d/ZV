@@ -12,9 +12,15 @@
             <img src="/static/brands/{{ data['logo'] }} " height="150px"
                  class="card-img-top p-4" alt="{{ data['brand'] }}">
             <div class="card-body">
-                <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
-                <p class="card-text mb-3">{{ data['price'] }}€ в месяц</p>
-                <a href="#" class="btn btn-outline-success">Оформить</a>
+                <div class="row mb-1">
+                    <div class="col-8">
+                        <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
+                        <p class="card-text mb-0">{{ data['price'] }}€ в месяц</p>
+                    </div>
+                    <div class="col-4 align-self-end text-end">
+                        <a href="{{ data['link'] }}" class="btn btn-success">Оформить</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -36,9 +42,15 @@
             <img src="/static/brands/{{ data['logo'] }} " height="150px"
                  class="card-img-top p-4" alt="{{ data['brand'] }}">
             <div class="card-body">
-                <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
-                <p class="card-text mb-3">{{ data['price'] }}€ в месяц</p>
-                <a href="#" class="btn btn-outline-success">Оформить</a>
+                <div class="row mb-1">
+                    <div class="col-8">
+                        <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
+                        <p class="card-text mb-0">{{ data['price'] }}€ в месяц</p>
+                    </div>
+                    <div class="col-4 align-self-end text-end">
+                        <a href="{{ data['link'] }}" class="btn btn-outline-success">Оформить</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -60,10 +72,19 @@
             <img src="/static/brands/{{ data['logo'] }} " height="150px"
                  class="card-img-top p-4" alt="{{ data['brand'] }}">
             <div class="card-body">
-                <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
-                <p class="card-text mb-3">{{ data['price'] }}€ в месяц</p>
-                <a href="#" class="btn btn-outline-success">Оформить</a>
+                <div class="row mb-1">
+                    <div class="col-8">
+                        <p class="card-text mb-0">{{ data['tariff_name'] }}</p>
+                        <p class="card-text mb-0">{{ data['price'] }}€ в месяц</p>
+                    </div>
+                    <div class="col-4 align-self-end text-end">
+                        <a href="{{ data['link'] }}" class="btn btn-outline-danger">Оформить</a>
+                    </div>
+                </div>
             </div>
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                {{ badge }}
+            </span>
         </div>
     </div>
     {% endfor %}

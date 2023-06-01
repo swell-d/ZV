@@ -2,11 +2,16 @@ function resultReload() {
     const prosthodontics = ((document.getElementById("prosthodontics") || {}).checked) || "";
     const prosthodontics_full_obj = document.getElementById("prosthodontics_full");
     const prosthodontics_full_block = document.getElementById("prosthodontics_full_block");
+    const teeth_obj = document.getElementById("teeth");
+    const teeth_block = document.getElementById("teeth_block");
     if (prosthodontics == "") {
         prosthodontics_full_obj.checked = false;
         prosthodontics_full_block.classList.add("d-none");
+        teeth_obj.value = 0;
+        teeth_block.classList.add("d-none");
     } else {
         prosthodontics_full_block.classList.remove("d-none");
+        teeth_block.classList.remove("d-none");
     }
 
     const Http = new XMLHttpRequest();

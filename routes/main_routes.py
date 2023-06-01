@@ -51,7 +51,6 @@ def main_routes(app):
         nuernberger = get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
         signaliduna = get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited)
 
-
         if 0 <= age < 18:
             if not orto:
                 data['cards1'] += [*allianz, *barmenia]
@@ -86,10 +85,12 @@ def main_routes(app):
                 elif teeth >= 4:
                     data['cards1'] += [*nuernberger]
                     data['cards3'] += [*allianz, *barmenia, *diebayerische, *muenchenerverein, *signaliduna]
+                    data['badge'] = 'Покрывает протезирование только 3 зубов'
 
             elif orto:
                 data['cards1'] += [*diebayerische, *muenchenerverein]
                 data['cards3'] += [*allianz, *barmenia, *nuernberger, *signaliduna]
+                data['badge'] = 'Без ортодонта'
 
         data['cards2'] = sorted(data['cards2'], key=lambda d: d['price'])
         data['cards3'] = sorted(data['cards3'], key=lambda d: d['price'])
@@ -114,7 +115,8 @@ def get_allianz(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
             'tariff_name': condition.tariff.name,
-            'price': round(condition.price * price_increase, 2)
+            'price': round(condition.price * price_increase, 2),
+            'link': condition.tariff.company.link
         })
     return result
 
@@ -127,7 +129,8 @@ def get_barmenia(age, teeth, prosthodontics, prosthodontics_full, orto, unlimite
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
             'tariff_name': condition.tariff.name,
-            'price': condition.price
+            'price': condition.price,
+            'link': condition.tariff.company.link
         })
     return result
 
@@ -141,7 +144,8 @@ def get_diebayerische(age, teeth, prosthodontics, prosthodontics_full, orto, unl
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
             'tariff_name': condition.tariff.name,
-            'price': condition.price
+            'price': condition.price,
+            'link': condition.tariff.company.link
         })
     return result
 
@@ -155,18 +159,25 @@ def get_muenchenerverein(age, teeth, prosthodontics, prosthodontics_full, orto, 
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
             'tariff_name': condition.tariff.name,
-            'price': condition.price
+            'price': condition.price,
+            'link': condition.tariff.company.link
         })
     return result
 
 
 def get_nuernberger(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
-    return [{
-        'brand': 'NÜRNBERGER',
-        'logo': 'nuernberger.svg',
-        'tariff_name': 'Platzhalter',
-        'price': 999
-    }]
+    result = []
+
+    for condition in dbf.get_conditions('nuernberger', age, teeth, prosthodontics, prosthodontics_full, orto,
+                                        unlimited):
+        result.append({
+            'brand': condition.tariff.company.name,
+            'logo': condition.tariff.company.logo,
+            'tariff_name': condition.tariff.name,
+            'price': condition.price,
+            'link': condition.tariff.company.link
+        })
+    return result
 
 
 def get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlimited):
@@ -178,6 +189,7 @@ def get_signaliduna(age, teeth, prosthodontics, prosthodontics_full, orto, unlim
             'brand': condition.tariff.company.name,
             'logo': condition.tariff.company.logo,
             'tariff_name': condition.tariff.name,
-            'price': condition.price
+            'price': condition.price,
+            'link': condition.tariff.company.link
         })
     return result

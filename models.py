@@ -13,6 +13,7 @@ class Company(db.Model):
     short_name = db.Column(db.String(100), nullable=False, unique=True)
     mode = db.Column(db.Integer, default=1)  # 0-disable  1-enable
     logo = db.Column(db.String(100))
+    link = db.Column(db.String(200))
 
 
 class Tariff(db.Model):

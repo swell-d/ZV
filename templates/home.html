@@ -20,7 +20,13 @@
             </div>
         </div>
 
-        <div class="row align-items-center mb-3" id="teeth_block">
+        <div class="form-check form-switch mb-3" id="prosthodontics_block">
+            <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics"
+                   oninput="resultReload()" {% if prosthodontics %}checked{% endif %}>
+            <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
+        </div>
+
+        <div class="row align-items-center mb-3 d-none" id="teeth_block">
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                 <label for="teeth" class="col-form-label">Kоличество отсутствующих зубов</label>
             </div>
@@ -35,13 +41,7 @@
             </div>
         </div>
 
-        <div class="form-check form-switch mb-3" id="prosthodontics_block">
-            <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics" name="prosthodontics"
-                   oninput="resultReload()" {% if prosthodontics %}checked{% endif %}>
-            <label class="form-check-label" for="prosthodontics">Планируется ли протезирование?</label>
-        </div>
-
-        <div class="form-check form-switch mb-3" id="prosthodontics_full_block">
+        <div class="form-check form-switch mb-3 d-none" id="prosthodontics_full_block">
             <input class="form-check-input" type="checkbox" role="switch" id="prosthodontics_full"
                    name="prosthodontics_full"
                    oninput="resultReload()" {% if prosthodontics_full %}checked{% endif %}>

@@ -4,7 +4,7 @@ from flask import Flask
 from flask_talisman import Talisman
 
 from instance import companies, allianz_unlimited, allianz, barmenia2, barmenia3, diebayerische, muenchenerverein, \
-    signaliduna
+    signaliduna, nuernberger
 from routes import error, main_routes
 
 csp = {
@@ -45,6 +45,7 @@ def create_app():
         diebayerische.create(db)
         muenchenerverein.create(db)
         signaliduna.create(db)
+        nuernberger.create(db)
 
     return app
 
