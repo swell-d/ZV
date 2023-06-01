@@ -34,7 +34,7 @@ def create(db):
         name='NÜRNBERGER',
         short_name='nuernberger',
         logo='nuernberger.svg',
-        link='#'
+        link='https://www.nuernberger.de/beitragsrechner/zahnzusatz/schritt/angaben-beitragsberechnung?agNr=JTB-JSIcCRtXQFBWfLKQYQ%3D%3D#/'
     )
     db.session.add(c5)
     c6 = models.Company(
