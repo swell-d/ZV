@@ -30,7 +30,7 @@ def create(db):
     barmenia = models.Company.query.filter_by(short_name='barmenia').first()
 
     tarif1 = models.Tariff(
-        name='Mehr Zahn 80, Mehr Zahnvorsorge Bonus',
+        name='Mehr Zahn 80 + Mehr ZV Bonus',
         company=barmenia,
         unlimited=0,
         prosthodontics=80,
@@ -40,7 +40,7 @@ def create(db):
     db.session.add(tarif1)
 
     tarif2 = models.Tariff(
-        name='Mehr Zahn 90, Mehr Zahnvorsorge Bonus',
+        name='Mehr Zahn 90 + Mehr ZV Bonus',
         company=barmenia,
         unlimited=0,
         prosthodontics=90,
@@ -50,7 +50,7 @@ def create(db):
     db.session.add(tarif2)
 
     tarif3 = models.Tariff(
-        name='Mehr Zahn 100, Mehr Zahnvorsorge Bonus',
+        name='Mehr Zahn 100 + Mehr ZV Bonus',
         company=barmenia,
         unlimited=0,
         prosthodontics=100,
